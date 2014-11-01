@@ -2,7 +2,7 @@ language: rust
 
 env:
   global:
-    - secure: VJzoH+McZ8/5uMevsJLBCkmsKghfPDxegiXmB37R3UrVSVH+9BwIcTVQLnz7Ul2OpOgoMzgepGWrxf6b+e/qrKJlDhJ3vieXMDhY02CpXB6ODeB0cbDWJvdrHV8BvmiqhbvKPYpV94RhRVM7w+gvXMkjGDWuDGsYB9HpP8ntF9U=
+    - secure: QfidQr7n4dKPTUCLr4oZLhqClawIlVQd7rHCTj0WDcOWH9jEwlPS4V3caeaKhBYvfSIVovqYHiEp//qRtopbT8R/CVFv0DyWfVrcxF0uKaA0PbH8E5mJ9l0qwt6ORrxpNbknPx2ueLEBAGRN7FuzbduXUu0xXlCFavhZ8AYc99E=
 
 script:
   - cargo build --verbose
@@ -10,7 +10,7 @@ script:
   - cargo doc --verbose && mv target/doc doc
 
 after_success:
-  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh'
+  - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
 
 branches:
   only: master
