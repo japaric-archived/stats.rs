@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `LabeledSample` struct in crate `criterion_stats`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, LabeledSample">
+
+    <title>criterion_stats::univariate::outliers::tukey::LabeledSample - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>criterion_stats</a>::<wbr><a href='../../index.html'>univariate</a>::<wbr><a href='../index.html'>outliers</a>::<wbr><a href='index.html'>tukey</a></p><script>window.sidebarCurrent = {name: 'LabeledSample', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../../index.html'>criterion_stats</a>::<wbr><a href='../../index.html'>univariate</a>::<wbr><a href='../index.html'>outliers</a>::<wbr><a href='index.html'>tukey</a>::<wbr><a class='struct' href=''>LabeledSample</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-688' class='srclink' href='../../../../src/criterion_stats/src/univariate/outliers/tukey.rs.html#60-63' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct LabeledSample&lt;'a, A&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span> {
+    // some fields omitted
+}</pre><div class='docblock'><p>A classified/labeled sample.</p>
+
+<p>The labeled data can be accessed using the indexing operator. The order of the data points is
+retained.</p>
+
+<p>NOTE: Due to limitations in the indexing traits, only the label is returned. Once the
+<code>IndexGet</code> trait lands in stdlib, the indexing operation will return a <code>(data_point, label)</code>
+pair.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a, A&gt; <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt; <span class='where'>where A: <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span></code></h3><div class='impl-items'><h4 id='method.count' class='method'><code>fn <a href='#method.count' class='fnname'>count</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<div class='docblock'><p>Returns the number of data points per label</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.fences' class='method'><code>fn <a href='#method.fences' class='fnname'>fences</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A, A, A, A<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<div class='docblock'><p>Returns the fences used to classify the outliers</p>
+</div><h4 id='method.iter' class='method'><code>fn <a href='#method.iter' class='fnname'>iter</a>(&amp;self) -&gt; <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.Iter.html' title='criterion_stats::univariate::outliers::tukey::Iter'>Iter</a>&lt;'a, A&gt;</code></h4>
+<div class='docblock'><p>Returns an iterator over the labeled data</p>
+</div></div><h2 id='deref-methods'>Methods from <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html' title='core::ops::Deref'>Deref</a>&lt;Target=<a class='struct' href='../../../../criterion_stats/univariate/struct.Sample.html' title='criterion_stats::univariate::Sample'>Sample</a>&lt;A&gt;&gt;</h2><div class='impl-items'><h4 id='method.as_slice' class='method'><code>fn <a href='#method.as_slice' class='fnname'>as_slice</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a>A<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a></code></h4>
+<div class='docblock'><p>Returns a slice that contains all the data points</p>
+
+<p>NOTE: This will be removed in favor of a <code>Deref&lt;Target=[A]&gt;</code> implementation once
+<a href="https://github.com/rust-lang/rust/issues/22257">rust-lang/rust#22257</a> is fixed.</p>
+</div></div><div class='impl-items'><h4 id='method.max' class='method'><code>fn <a href='#method.max' class='fnname'>max</a>(&amp;self) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the biggest element in the sample</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.mean' class='method'><code>fn <a href='#method.mean' class='fnname'>mean</a>(&amp;self) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the arithmetic average of the sample</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.median_abs_dev' class='method'><code>fn <a href='#method.median_abs_dev' class='fnname'>median_abs_dev</a>(&amp;self, median: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;A&gt;) -&gt; A <span class='where'>where <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>: <a class='trait' href='../../../../cast/trait.From.html' title='cast::From'>From</a>&lt;A, Output=<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='enum' href='../../../../cast/enum.Error.html' title='cast::Error'>Error</a>&gt;&gt;</span></code></h4>
+<div class='docblock'><p>Returns the median absolute deviation</p>
+
+<p>The <code>median</code> can be optionally passed along to speed up (2X) the computation</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+<li>Memory: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.median_abs_dev_pct' class='method'><code>fn <a href='#method.median_abs_dev_pct' class='fnname'>median_abs_dev_pct</a>(&amp;self) -&gt; A <span class='where'>where <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>: <a class='trait' href='../../../../cast/trait.From.html' title='cast::From'>From</a>&lt;A, Output=<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='enum' href='../../../../cast/enum.Error.html' title='cast::Error'>Error</a>&gt;&gt;</span></code></h4>
+<div class='docblock'><p>Returns the median absolute deviation as a percentage of the median</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+<li>Memory: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.min' class='method'><code>fn <a href='#method.min' class='fnname'>min</a>(&amp;self) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the smallest element in the sample</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.percentiles' class='method'><code>fn <a href='#method.percentiles' class='fnname'>percentiles</a>(&amp;self) -&gt; <a class='struct' href='../../../../criterion_stats/univariate/struct.Percentiles.html' title='criterion_stats::univariate::Percentiles'>Percentiles</a>&lt;A&gt; <span class='where'>where <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>: <a class='trait' href='../../../../cast/trait.From.html' title='cast::From'>From</a>&lt;A, Output=<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='enum' href='../../../../cast/enum.Error.html' title='cast::Error'>Error</a>&gt;&gt;</span></code></h4>
+<div class='docblock'><p>Returns a &quot;view&quot; into the percentiles of the sample</p>
+
+<p>This &quot;view&quot; makes consecutive computations of percentiles much faster (<code>O(1)</code>)</p>
+
+<ul>
+<li>Time: <code>O(N log N) where N = length</code></li>
+<li>Memory: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.std_dev' class='method'><code>fn <a href='#method.std_dev' class='fnname'>std_dev</a>(&amp;self, mean: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;A&gt;) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the standard deviation of the sample</p>
+
+<p>The <code>mean</code> can be optionally passed along to speed up (2X) the computation</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.std_dev_pct' class='method'><code>fn <a href='#method.std_dev_pct' class='fnname'>std_dev_pct</a>(&amp;self) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the standard deviation as a percentage of the mean</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.sum' class='method'><code>fn <a href='#method.sum' class='fnname'>sum</a>(&amp;self) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the sum of all the elements of the sample</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.t' class='method'><code>fn <a href='#method.t' class='fnname'>t</a>(&amp;self, other: &amp;<a class='struct' href='../../../../criterion_stats/univariate/struct.Sample.html' title='criterion_stats::univariate::Sample'>Sample</a>&lt;A&gt;) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the t score between these two samples</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.var' class='method'><code>fn <a href='#method.var' class='fnname'>var</a>(&amp;self, mean: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;A&gt;) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the variance of the sample</p>
+
+<p>The <code>mean</code> can be optionally passed along to speed up (2X) the computation</p>
+
+<ul>
+<li>Time: <code>O(length)</code></li>
+</ul>
+</div><h4 id='method.bootstrap' class='method'><code>fn <a href='#method.bootstrap' class='fnname'>bootstrap</a>&lt;T, S&gt;(&amp;self, nresamples: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, statistic: S) -&gt; T::Distributions <span class='where'>where S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(&amp;<a class='struct' href='../../../../criterion_stats/univariate/struct.Sample.html' title='criterion_stats::univariate::Sample'>Sample</a>&lt;A&gt;) -&gt; T, S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>, T: <a class='trait' href='../../../../criterion_stats/tuple/trait.Tuple.html' title='criterion_stats::tuple::Tuple'>Tuple</a>, T::Distributions: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a></span></code></h4>
+<div class='docblock'><p>Returns the bootstrap distributions of the parameters estimated by the 1-sample statistic</p>
+
+<ul>
+<li>Multi-threaded</li>
+<li>Time: <code>O(nresamples)</code></li>
+<li>Memory: <code>O(nresamples)</code></li>
+</ul>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;'a, A&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html' title='core::ops::Deref'>Deref</a> for <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt; <span class='where'>where A: <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span></code></h3><div class='impl-items'><h4 id='associatedtype.Target' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html#associatedtype.Target' class='type'>Target</a> = <a class='struct' href='../../../../criterion_stats/univariate/struct.Sample.html' title='criterion_stats::univariate::Sample'>Sample</a>&lt;A&gt;</code></h4>
+<h4 id='method.deref' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html#tymethod.deref' class='fnname'>deref</a>(&amp;self) -&gt; &amp;<a class='struct' href='../../../../criterion_stats/univariate/struct.Sample.html' title='criterion_stats::univariate::Sample'>Sample</a>&lt;A&gt;</code></h4>
+</div><h3 class='impl'><code>impl&lt;'a, A&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html' title='core::ops::Index'>Index</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt; for <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt; <span class='where'>where A: <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span></code></h3><div class='impl-items'><h4 id='associatedtype.Output' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html#associatedtype.Output' class='type'>Output</a> = <a class='enum' href='../../../../criterion_stats/univariate/outliers/tukey/enum.Label.html' title='criterion_stats::univariate::outliers::tukey::Label'>Label</a></code></h4>
+<h4 id='method.index' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html#tymethod.index' class='fnname'>index</a>(&amp;self, i: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; &amp;<a class='enum' href='../../../../criterion_stats/univariate/outliers/tukey/enum.Label.html' title='criterion_stats::univariate::outliers::tukey::Label'>Label</a></code></h4>
+</div><h3 class='impl'><code>impl&lt;'a, 'b, A&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/trait.IntoIterator.html' title='core::iter::IntoIterator'>IntoIterator</a> for &amp;'b <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt; <span class='where'>where A: <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span></code></h3><div class='impl-items'><h4 id='associatedtype.Item' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/trait.IntoIterator.html#associatedtype.Item' class='type'>Item</a> = <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A, <a class='enum' href='../../../../criterion_stats/univariate/outliers/tukey/enum.Label.html' title='criterion_stats::univariate::outliers::tukey::Label'>Label</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='associatedtype.IntoIter' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/trait.IntoIterator.html#associatedtype.IntoIter' class='type'>IntoIter</a> = <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.Iter.html' title='criterion_stats::univariate::outliers::tukey::Iter'>Iter</a>&lt;'a, A&gt;</code></h4>
+<h4 id='method.into_iter' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/iter/trait.IntoIterator.html#tymethod.into_iter' class='fnname'>into_iter</a>(self) -&gt; <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.Iter.html' title='criterion_stats::univariate::outliers::tukey::Iter'>Iter</a>&lt;'a, A&gt;</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl&lt;'a, A: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;'a, A: <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a></span></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../../criterion_stats/univariate/outliers/tukey/struct.LabeledSample.html' title='criterion_stats::univariate::outliers::tukey::LabeledSample'>LabeledSample</a>&lt;'a, A&gt;</code></h4>
+<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "criterion_stats";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Bandwidth","Method to estimate the bandwidth"]],"mod":[["kernel","Kernels"]],"struct":[["Kde","Univariate kernel density estimator"]]});

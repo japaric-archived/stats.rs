@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["regression","Regression analysis"]],"struct":[["Data","Bivariate `(X, Y)` data"],["Pairs","Iterator over `Data`"]]});

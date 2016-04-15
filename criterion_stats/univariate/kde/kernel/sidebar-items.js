@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Gaussian","Gaussian kernel"]],"trait":[["Kernel","Kernel function"]]});

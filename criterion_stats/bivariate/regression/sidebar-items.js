@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Slope","A straight line that passes through the origin `y = m * x`"],["StraightLine","A straight line `y = m * x + b`"]]});

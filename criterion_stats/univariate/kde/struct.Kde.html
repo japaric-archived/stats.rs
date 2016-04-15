@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Kde` struct in crate `criterion_stats`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Kde">
+
+    <title>criterion_stats::univariate::kde::Kde - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>criterion_stats</a>::<wbr><a href='../index.html'>univariate</a>::<wbr><a href='index.html'>kde</a></p><script>window.sidebarCurrent = {name: 'Kde', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>criterion_stats</a>::<wbr><a href='../index.html'>univariate</a>::<wbr><a href='index.html'>kde</a>::<wbr><a class='struct' href=''>Kde</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-549' class='srclink' href='../../../src/criterion_stats/src/univariate/kde/mod.rs.html#17-21' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Kde&lt;'a, A, K&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a>, K: <a class='trait' href='../../../criterion_stats/univariate/kde/kernel/trait.Kernel.html' title='criterion_stats::univariate::kde::kernel::Kernel'>Kernel</a>&lt;A&gt;</span> {
+    // some fields omitted
+}</pre><div class='docblock'><p>Univariate kernel density estimator</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a, A, K&gt; <a class='struct' href='../../../criterion_stats/univariate/kde/struct.Kde.html' title='criterion_stats::univariate::kde::Kde'>Kde</a>&lt;'a, A, K&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a>, K: <a class='trait' href='../../../criterion_stats/univariate/kde/kernel/trait.Kernel.html' title='criterion_stats::univariate::kde::kernel::Kernel'>Kernel</a>&lt;A&gt;</span></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(sample: &amp;'a <a class='struct' href='../../../criterion_stats/univariate/struct.Sample.html' title='criterion_stats::univariate::Sample'>Sample</a>&lt;A&gt;, k: K, bw: <a class='enum' href='../../../criterion_stats/univariate/kde/enum.Bandwidth.html' title='criterion_stats::univariate::kde::Bandwidth'>Bandwidth</a>&lt;A&gt;) -&gt; <a class='struct' href='../../../criterion_stats/univariate/kde/struct.Kde.html' title='criterion_stats::univariate::kde::Kde'>Kde</a>&lt;'a, A, K&gt;</code></h4>
+<div class='docblock'><p>Creates a new kernel density estimator from the <code>sample</code>, using a kernel <code>k</code> and estimating
+the bandwidth using the method <code>bw</code></p>
+</div><h4 id='method.bandwidth' class='method'><code>fn <a href='#method.bandwidth' class='fnname'>bandwidth</a>(&amp;self) -&gt; A</code></h4>
+<div class='docblock'><p>Returns the bandwidth used by the estimator</p>
+</div><h4 id='method.map' class='method'><code>fn <a href='#method.map' class='fnname'>map</a>(&amp;self, xs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a>A<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>[</a>A<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>&gt;</code></h4>
+<div class='docblock'><p>Maps the KDE over <code>xs</code></p>
+
+<ul>
+<li>Multihreaded</li>
+</ul>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;'a, A, K&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A,<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt; for <a class='struct' href='../../../criterion_stats/univariate/kde/struct.Kde.html' title='criterion_stats::univariate::kde::Kde'>Kde</a>&lt;'a, A, K&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a>, K: <a class='trait' href='../../../criterion_stats/univariate/kde/kernel/trait.Kernel.html' title='criterion_stats::univariate::kde::kernel::Kernel'>Kernel</a>&lt;A&gt;</span></code></h3><div class='impl-items'><h4 id='method.call' class='method'><code>extern "rust-call" fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html#tymethod.call' class='fnname'>call</a>(&amp;self, (x): <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A,<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>) -&gt; A</code></h4>
+</div><h3 class='impl'><code>impl&lt;'a, A, K&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A,<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt; for <a class='struct' href='../../../criterion_stats/univariate/kde/struct.Kde.html' title='criterion_stats::univariate::kde::Kde'>Kde</a>&lt;'a, A, K&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a>, K: <a class='trait' href='../../../criterion_stats/univariate/kde/kernel/trait.Kernel.html' title='criterion_stats::univariate::kde::kernel::Kernel'>Kernel</a>&lt;A&gt;</span></code></h3><div class='impl-items'><h4 id='method.call_mut' class='method'><code>extern "rust-call" fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html#tymethod.call_mut' class='fnname'>call_mut</a>(&amp;mut self, args: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A,<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>) -&gt; A</code></h4>
+</div><h3 class='impl'><code>impl&lt;'a, A, K&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A,<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt; for <a class='struct' href='../../../criterion_stats/univariate/kde/struct.Kde.html' title='criterion_stats::univariate::kde::Kde'>Kde</a>&lt;'a, A, K&gt; <span class='where'>where A: 'a + <a class='trait' href='../../../floaty/trait.Floaty.html' title='floaty::Floaty'>Floaty</a>, K: <a class='trait' href='../../../criterion_stats/univariate/kde/kernel/trait.Kernel.html' title='criterion_stats::univariate::kde::kernel::Kernel'>Kernel</a>&lt;A&gt;</span></code></h3><div class='impl-items'><h4 id='associatedtype.Output' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html#associatedtype.Output' class='type'>Output</a> = A</code></h4>
+<h4 id='method.call_once' class='method'><code>extern "rust-call" fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html#tymethod.call_once' class='fnname'>call_once</a>(self, args: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>A,<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>) -&gt; A</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "criterion_stats";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

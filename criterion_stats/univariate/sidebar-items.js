@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["bootstrap","Performs a two-sample bootstrap"]],"mod":[["kde","Kernel density estimation"],["mixed","Mixed bootstrap"],["outliers","Classification of outliers"]],"struct":[["Percentiles","A \"view\" into the percentiles of a sample"],["Sample","A collection of data points drawn from a population"]]});

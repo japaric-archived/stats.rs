@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Label","Labels used to classify outliers"]],"fn":[["classify","Classifies the sample, and returns a labeled sample."]],"struct":[["Iter","Iterator over the labeled data"],["LabeledSample","A classified/labeled sample."]]});
