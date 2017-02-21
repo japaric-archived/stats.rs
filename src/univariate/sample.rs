@@ -1,7 +1,7 @@
 use std::ptr::Unique;
 use std::{cmp, mem};
 
-use cast::{self, From as _0};
+use cast;
 use floaty::Floaty;
 use num_cpus;
 use thread_scoped as thread;
@@ -26,29 +26,23 @@ impl<A> Sample<A> {
     ///
     /// [rust-lang/rust#22257]: https://github.com/rust-lang/rust/issues/22257
     pub fn as_slice(&self) -> &[A] {
-        unsafe {
-            mem::transmute(self)
-        }
+        unsafe { mem::transmute(self) }
     }
-
 }
 
 // TODO(rust-lang/rfcs#735) move this `impl` into a private percentiles module
-impl<A> Sample<A> where A: Floaty {
+impl<A> Sample<A>
+    where A: Floaty
+{
     /// Creates a new sample from an existing slice
     ///
     /// # Panics
     ///
     /// Panics if `slice` contains any `NaN` or if `slice` has less than two elements
     pub fn new(slice: &[A]) -> &Sample<A> {
-        assert!(
-            slice.len() > 1 &&
-            slice.iter().all(|x| !x.is_nan())
-        );
+        assert!(slice.len() > 1 && slice.iter().all(|x| !x.is_nan()));
 
-        unsafe {
-            mem::transmute(slice)
-        }
+        unsafe { mem::transmute(slice) }
     }
 
     /// Returns the biggest element in the sample
@@ -79,8 +73,8 @@ impl<A> Sample<A> where A: Floaty {
     ///
     /// - Time: `O(length)`
     /// - Memory: `O(length)`
-    pub fn median_abs_dev(&self, median: Option<A>) -> A where
-        usize: cast::From<A, Output=Result<usize, cast::Error>>,
+    pub fn median_abs_dev(&self, median: Option<A>) -> A
+        where usize: cast::From<A, Output = Result<usize, cast::Error>>
     {
         let median = median.unwrap_or_else(|| self.percentiles().median());
 
@@ -88,9 +82,7 @@ impl<A> Sample<A> where A: Floaty {
         // bottle neck is the sorting operation which is part of the computation of the median
         let abs_devs = self.as_slice().iter().map(|&x| (x - median).abs()).collect::<Vec<_>>();
 
-        let abs_devs: &Sample<A> = unsafe {
-            mem::transmute(&*abs_devs)
-        };
+        let abs_devs: &Sample<A> = unsafe { mem::transmute(&*abs_devs) };
 
         abs_devs.percentiles().median() * A::cast(1.4826)
     }
@@ -99,8 +91,8 @@ impl<A> Sample<A> where A: Floaty {
     ///
     /// - Time: `O(length)`
     /// - Memory: `O(length)`
-    pub fn median_abs_dev_pct(&self) -> A where
-        usize: cast::From<A, Output=Result<usize, cast::Error>>,
+    pub fn median_abs_dev_pct(&self) -> A
+        where usize: cast::From<A, Output = Result<usize, cast::Error>>
     {
         let _100 = A::cast(100);
         let median = self.percentiles().median();
@@ -128,13 +120,15 @@ impl<A> Sample<A> where A: Floaty {
     ///
     /// - Time: `O(N log N) where N = length`
     /// - Memory: `O(length)`
-    pub fn percentiles(&self) -> Percentiles<A> where
-        usize: cast::From<A, Output=Result<usize, cast::Error>>,
+    pub fn percentiles(&self) -> Percentiles<A>
+        where usize: cast::From<A, Output = Result<usize, cast::Error>>
     {
         use std::cmp::Ordering;
 
         // NB This function assumes that there are no `NaN`s in the sample
-        fn cmp<T>(a: &T, b: &T) -> Ordering where T: PartialOrd {
+        fn cmp<T>(a: &T, b: &T) -> Ordering
+            where T: PartialOrd
+        {
             if a < b {
                 Ordering::Less
             } else if a == b {
@@ -148,9 +142,7 @@ impl<A> Sample<A> where A: Floaty {
         v.sort_by(cmp);
 
         // NB :-1: to intra-crate privacy rules
-        unsafe {
-            mem::transmute(v)
-        }
+        unsafe { mem::transmute(v) }
     }
 
     /// Returns the standard deviation of the sample
@@ -216,15 +208,11 @@ impl<A> Sample<A> where A: Floaty {
     /// - Multi-threaded
     /// - Time: `O(nresamples)`
     /// - Memory: `O(nresamples)`
-    pub fn bootstrap<T, S>(
-        &self,
-        nresamples: usize,
-        statistic: S,
-    ) -> T::Distributions where
-        S: Fn(&Sample<A>) -> T,
-        S: Sync,
-        T: Tuple,
-        T::Distributions: Send,
+    pub fn bootstrap<T, S>(&self, nresamples: usize, statistic: S) -> T::Distributions
+        where S: Fn(&Sample<A>) -> T,
+              S: Sync,
+              T: Tuple,
+              T::Distributions: Send
     {
         let ncpus = num_cpus::get();
 
@@ -236,21 +224,23 @@ impl<A> Sample<A> where A: Floaty {
                 let mut distributions: T::Distributions =
                     TupledDistributions::uninitialized(nresamples);
 
-                let _ = (0..ncpus).map(|i| {
-                    // NB Can't implement `chunks_mut` for the tupled distributions without HKT,
-                    // for now I'll make do with aliasing and careful non-overlapping indexing
-                    let mut ptr = Unique::new(&mut distributions);
-                    let mut resamples = Resamples::new(self);
-                    let offset = i * granularity;
+                let _ = (0..ncpus)
+                    .map(|i| {
+                        // NB Can't implement `chunks_mut` for the tupled distributions without HKT,
+                        // for now I'll make do with aliasing and careful non-overlapping indexing
+                        let mut ptr = Unique::new(&mut distributions);
+                        let mut resamples = Resamples::new(self);
+                        let offset = i * granularity;
 
-                    thread::scoped(move || {
-                        let distributions: &mut T::Distributions = ptr.get_mut();
+                        thread::scoped(move || {
+                            let distributions: &mut T::Distributions = ptr.get_mut();
 
-                        for i in offset..cmp::min(offset + granularity, nresamples) {
-                            distributions.set_unchecked(i, statistic(resamples.next()))
-                        }
+                            for i in offset..cmp::min(offset + granularity, nresamples) {
+                                distributions.set_unchecked(i, statistic(resamples.next()))
+                            }
+                        })
                     })
-                }).collect::<Vec<_>>();
+                    .collect::<Vec<_>>();
 
                 distributions
             } else {
@@ -268,15 +258,15 @@ impl<A> Sample<A> where A: Floaty {
     }
 
     #[cfg(test)]
-    pub fn iqr(&self) -> A where
-        usize: cast::From<A, Output=Result<usize, cast::Error>>,
+    pub fn iqr(&self) -> A
+        where usize: cast::From<A, Output = Result<usize, cast::Error>>
     {
         self.percentiles().iqr()
     }
 
     #[cfg(test)]
-    pub fn median(&self) -> A where
-        usize: cast::From<A, Output=Result<usize, cast::Error>>,
+    pub fn median(&self) -> A
+        where usize: cast::From<A, Output = Result<usize, cast::Error>>
     {
         self.percentiles().median()
     }
@@ -284,13 +274,13 @@ impl<A> Sample<A> where A: Floaty {
 
 // FIXME(rust-lang/rust#22257) Using this generates ICEs
 //impl<A> Deref for Sample<A> where A: Data {
-    //type Target = [A];
+//type Target = [A];
 
-    //fn deref(&self) -> &[A] {
-        //unsafe {
-            //mem::transmute(self)
-        //}
-    //}
+//fn deref(&self) -> &[A] {
+//unsafe {
+//mem::transmute(self)
+//}
+//}
 //}
 
 #[cfg(test)]

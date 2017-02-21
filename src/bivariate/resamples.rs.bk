@@ -4,10 +4,7 @@ use floaty::Floaty;
 
 use bivariate::Data;
 
-pub struct Resamples<'a, X, Y>
-    where X: 'a + Floaty,
-          Y: 'a + Floaty
-{
+pub struct Resamples<'a, X, Y> where X: 'a + Floaty, Y: 'a + Floaty {
     range: Range<usize>,
     rng: XorShiftRng,
     data: (&'a [X], &'a [Y]),
@@ -15,10 +12,7 @@ pub struct Resamples<'a, X, Y>
 }
 
 #[cfg_attr(clippy, allow(should_implement_trait))]
-impl<'a, X, Y> Resamples<'a, X, Y>
-    where X: 'a + Floaty,
-          Y: 'a + Floaty
-{
+impl<'a, X, Y> Resamples<'a, X, Y> where X: 'a + Floaty, Y: 'a + Floaty {
     pub fn new(data: Data<'a, X, Y>) -> Resamples<'a, X, Y> {
         Resamples {
             range: Range::new(0, data.0.len()),
@@ -44,7 +38,7 @@ impl<'a, X, Y> Resamples<'a, X, Y>
                 }
 
                 self.stage = Some(stage);
-            }
+            },
             Some(ref mut stage) => {
                 for i in 0..n {
                     let j = self.range.ind_sample(rng);
@@ -52,7 +46,7 @@ impl<'a, X, Y> Resamples<'a, X, Y>
                     stage.0[i] = self.data.0[j];
                     stage.1[i] = self.data.1[j];
                 }
-            }
+            },
         }
 
         if let Some((ref x, ref y)) = self.stage {

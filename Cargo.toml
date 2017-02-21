@@ -9,14 +9,15 @@ repository = "https://github.com/japaric/stats.rs"
 version = "0.1.0"
 
 [dependencies]
-cast = "0.1.0"
+cast = "0.2.0"
 floaty = "0.1.0"
-num_cpus = "0.2.10"
+num_cpus = "1.2.1"
 rand = "0.3.13"
 thread-scoped = "1.0.1"
 
 [dev-dependencies]
 approx = "0.1.0"
-itertools = "0.4.7"
-quickcheck = "0.2.25"
-quickcheck_macros = "0.2.25"
+itertools = "0.5.9"
+itertools-num = "0.1.1"
+quickcheck = "0.4.1"
+quickcheck_macros = "0.4.1"

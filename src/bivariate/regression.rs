@@ -1,6 +1,5 @@
 //! Regression analysis
 
-use cast::From as _0;
 use floaty::Floaty;
 
 use bivariate::Data;
@@ -9,7 +8,9 @@ use bivariate::Data;
 #[derive(Clone, Copy)]
 pub struct Slope<A>(pub A) where A: Floaty;
 
-impl<A> Slope<A> where A: Floaty {
+impl<A> Slope<A>
+    where A: Floaty
+{
     /// Fits the data to a straight line that passes through the origin using ordinary least
     /// squares
     ///
@@ -51,14 +52,18 @@ impl<A> Slope<A> where A: Floaty {
 
 /// A straight line `y = m * x + b`
 #[derive(Clone, Copy)]
-pub struct StraightLine<A> where A: Floaty {
+pub struct StraightLine<A>
+    where A: Floaty
+{
     /// The y-intercept of the line
     pub intercept: A,
     /// The slope of the line
     pub slope: A,
 }
 
-impl<A> StraightLine<A> where A: Floaty {
+impl<A> StraightLine<A>
+    where A: Floaty
+{
     /// Fits the data to a straight line using ordinary least squares
     ///
     /// - Time: `O(length)`
