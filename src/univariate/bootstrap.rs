@@ -68,8 +68,10 @@ macro_rules! test {
 
             #[quickcheck]
             fn mixed_two_sample(
-                (a_size, a_start): (usize, usize),
-                (b_size, b_start): (usize, usize),
+                a_size: usize,
+                a_start: usize,
+                b_size: usize,
+                b_start: usize, 
                 nresamples: usize,
             ) -> TestResult {
                 if let (Some(a), Some(b)) =
@@ -103,8 +105,8 @@ macro_rules! test {
 
             #[quickcheck]
             fn two_sample(
-                (a_size, a_start): (usize, usize),
-                (b_size, b_start): (usize, usize),
+                a_size: usize, a_start: usize, 
+                b_size: usize, b_start: usize, 
                 nresamples: usize,
             ) -> TestResult {
                 if let (Some(a), Some(b)) =

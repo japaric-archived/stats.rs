@@ -22,13 +22,22 @@ extern crate num_cpus;
 extern crate rand;
 extern crate thread_scoped;
 
-#[cfg(test)] #[macro_use] extern crate approx;
-#[cfg(test)] extern crate itertools;
-#[cfg(test)] extern crate quickcheck;
-#[cfg(test)] extern crate test as stdtest;
+#[cfg(test)]
+#[macro_use]
+extern crate approx;
+#[cfg(test)]
+extern crate itertools;
+#[cfg(test)]
+extern crate itertools_num;
+#[cfg(test)]
+extern crate quickcheck;
+#[cfg(test)]
+extern crate test as stdtest;
 
-#[cfg(test)] mod bench;
-#[cfg(test)] mod test;
+#[cfg(test)]
+mod bench;
+#[cfg(test)]
+mod test;
 
 pub mod bivariate;
 pub mod tuple;
@@ -37,7 +46,6 @@ pub mod univariate;
 use std::mem;
 use std::ops::Deref;
 
-use cast::From;
 use floaty::Floaty;
 
 use univariate::Sample;
@@ -45,14 +53,16 @@ use univariate::Sample;
 /// The bootstrap distribution of some parameter
 pub struct Distribution<A>(Box<[A]>);
 
-impl<A> Distribution<A> where A: Floaty {
+impl<A> Distribution<A>
+    where A: Floaty
+{
     /// Computes the confidence interval of the population parameter using percentiles
     ///
     /// # Panics
     ///
     /// Panics if the `confidence_level` is not in the `(0, 1)` range.
     pub fn confidence_interval(&self, confidence_level: A) -> (A, A)
-        where usize: cast::From<A, Output=Result<usize, cast::Error>>,
+        where usize: cast::From<A, Output = Result<usize, cast::Error>>
     {
         let _0 = A::cast(0);
         let _1 = A::cast(1);
@@ -63,10 +73,8 @@ impl<A> Distribution<A> where A: Floaty {
         let percentiles = self.percentiles();
 
         // FIXME(privacy) this should use the `at_unchecked()` method
-        (
-            percentiles.at(_50 * (_1 - confidence_level)),
-            percentiles.at(_50 * (_1 + confidence_level)),
-        )
+        (percentiles.at(_50 * (_1 - confidence_level)),
+         percentiles.at(_50 * (_1 + confidence_level)))
     }
 
     /// Computes the "likelihood" of seeing the value `t` or "more extreme" values in the
@@ -92,9 +100,7 @@ impl<A> Deref for Distribution<A> {
     fn deref(&self) -> &Sample<A> {
         let slice: &[_] = &self.0;
 
-        unsafe {
-            mem::transmute(slice)
-        }
+        unsafe { mem::transmute(slice) }
     }
 }
 

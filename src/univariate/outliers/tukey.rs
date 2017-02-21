@@ -41,7 +41,7 @@ use std::iter::IntoIterator;
 use std::ops::{Deref, Index};
 use std::slice;
 
-use cast::{self, From as _0};
+use cast;
 use floaty::Floaty;
 
 use univariate::Sample;
@@ -57,12 +57,16 @@ use self::Label::*;
 /// `IndexGet` trait lands in stdlib, the indexing operation will return a `(data_point, label)`
 /// pair.
 #[derive(Clone, Copy)]
-pub struct LabeledSample<'a, A> where A: 'a + Floaty {
+pub struct LabeledSample<'a, A>
+    where A: 'a + Floaty
+{
     fences: (A, A, A, A),
     sample: &'a Sample<A>,
 }
 
-impl<'a, A> LabeledSample<'a, A> where A: Floaty {
+impl<'a, A> LabeledSample<'a, A>
+    where A: Floaty
+{
     /// Returns the number of data points per label
     ///
     /// - Time: `O(length)`
@@ -74,16 +78,16 @@ impl<'a, A> LabeledSample<'a, A> where A: Floaty {
             match label {
                 LowSevere => {
                     los += 1;
-                },
+                }
                 LowMild => {
                     lom += 1;
-                },
+                }
                 NotAnOutlier => {
                     noa += 1;
-                },
+                }
                 HighMild => {
                     him += 1;
-                },
+                }
                 HighSevere => {
                     his += 1;
                 }
@@ -107,7 +111,9 @@ impl<'a, A> LabeledSample<'a, A> where A: Floaty {
     }
 }
 
-impl<'a, A> Deref for LabeledSample<'a, A> where A: Floaty {
+impl<'a, A> Deref for LabeledSample<'a, A>
+    where A: Floaty
+{
     type Target = Sample<A>;
 
     fn deref(&self) -> &Sample<A> {
@@ -116,7 +122,9 @@ impl<'a, A> Deref for LabeledSample<'a, A> where A: Floaty {
 }
 
 // FIXME Use the `IndexGet` trait
-impl<'a, A> Index<usize> for LabeledSample<'a, A> where A: Floaty {
+impl<'a, A> Index<usize> for LabeledSample<'a, A>
+    where A: Floaty
+{
     type Output = Label;
 
     #[cfg_attr(clippy, allow(similar_names))]
@@ -144,7 +152,9 @@ impl<'a, A> Index<usize> for LabeledSample<'a, A> where A: Floaty {
     }
 }
 
-impl<'a, 'b, A> IntoIterator for &'b LabeledSample<'a, A> where A: Floaty {
+impl<'a, 'b, A> IntoIterator for &'b LabeledSample<'a, A>
+    where A: Floaty
+{
     type Item = (A, Label);
     type IntoIter = Iter<'a, A>;
 
@@ -154,12 +164,16 @@ impl<'a, 'b, A> IntoIterator for &'b LabeledSample<'a, A> where A: Floaty {
 }
 
 /// Iterator over the labeled data
-pub struct Iter<'a, A> where A: 'a + Floaty {
+pub struct Iter<'a, A>
+    where A: 'a + Floaty
+{
     fences: (A, A, A, A),
     iter: slice::Iter<'a, A>,
 }
 
-impl<'a, A> Iterator for Iter<'a, A> where A: Floaty {
+impl<'a, A> Iterator for Iter<'a, A>
+    where A: Floaty
+{
     type Item = (A, Label);
 
     #[cfg_attr(clippy, allow(similar_names))]
@@ -247,9 +261,9 @@ impl Label {
 /// Classifies the sample, and returns a labeled sample.
 ///
 /// - Time: `O(N log N) where N = length`
-pub fn classify<A>(sample: &Sample<A>) -> LabeledSample<A> where
-    A: Floaty,
-    usize: cast::From<A, Output=Result<usize, cast::Error>>,
+pub fn classify<A>(sample: &Sample<A>) -> LabeledSample<A>
+    where A: Floaty,
+          usize: cast::From<A, Output = Result<usize, cast::Error>>
 {
     let (q1, _, q3) = sample.percentiles().quartiles();
     let iqr = q3 - q1;
