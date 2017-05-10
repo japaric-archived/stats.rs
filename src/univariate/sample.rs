@@ -1,7 +1,7 @@
 use std::ptr::Unique;
 use std::{cmp, mem};
 
-use cast::{self, From as _0};
+use cast::{self};
 use floaty::Floaty;
 use num_cpus;
 use thread_scoped as thread;

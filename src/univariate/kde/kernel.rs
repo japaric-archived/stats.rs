@@ -1,6 +1,5 @@
 //! Kernels
 
-use cast::From as _0;
 use floaty::Floaty;
 
 /// Kernel function
