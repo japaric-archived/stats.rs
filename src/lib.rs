@@ -8,7 +8,6 @@
 #![cfg_attr(test, feature(test))]
 #![cfg_attr(test, plugin(quickcheck_macros))]
 #![deny(missing_docs)]
-#![deny(warnings)]
 #![feature(custom_attribute)]
 #![feature(fn_traits)]
 #![feature(plugin)]
