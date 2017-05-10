@@ -4,7 +4,6 @@ pub mod kernel;
 
 use std::ptr;
 
-use cast::From as _0;
 use floaty::Floaty;
 use num_cpus;
 use thread_scoped as thread;

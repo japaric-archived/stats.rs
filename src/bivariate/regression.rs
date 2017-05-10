@@ -1,6 +1,5 @@
 //! Regression analysis
 
-use cast::From as _0;
 use floaty::Floaty;
 
 use bivariate::Data;
